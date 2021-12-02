@@ -1,6 +1,5 @@
 import pytest
-from aoc_day2 import read_input
-from aoc_day2 import Submarine
+from aoc_day2 import move_sub, read_input, Submarine
 
 def test_read_input_content():
     directions = read_input('input\\day2_test.txt')
@@ -33,3 +32,9 @@ def test_sub_can_move_down():
     sub.move(directions)
     assert sub.horizontal == 0
     assert sub.depth == 2
+
+def test_sub_follows_test_directions():
+    sub = Submarine()
+    moved_sub = move_sub(sub,'input\\day2_test.txt')
+    assert moved_sub.horizontal == 15
+    assert moved_sub.depth == 10
