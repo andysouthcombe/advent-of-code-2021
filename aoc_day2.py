@@ -28,7 +28,8 @@ class SubmarinePart2():
     def move(self, directions):
         (direction, distance) = directions
         if direction == 'forward':
-            self.horizontal += (distance * self.mulitpliers[direction])
+            self.horizontal += distance
+            self.depth += (distance * self.aim)
         else:
             self.aim += (distance * self.mulitpliers[direction])
     def print_position(self):
@@ -47,6 +48,10 @@ def move_sub(sub:SubmarinePart1, filename:str)-> SubmarinePart1:
 
 if __name__ == '__main__':
    sub = SubmarinePart1()
+   moved_sub = move_sub(sub,'input\\day2.txt')
+   moved_sub.print_position()
+
+   sub = SubmarinePart2()
    moved_sub = move_sub(sub,'input\\day2.txt')
    moved_sub.print_position()
   

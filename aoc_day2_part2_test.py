@@ -26,8 +26,24 @@ def test_sub_can_aim_up():
     assert sub.depth == 1
     assert sub.aim == 3
 
-# def test_sub_follows_test_directions():
-#     sub = SubmarinePart1()
-#     moved_sub = move_sub(sub,'input\\day2_test.txt')
-#     assert moved_sub.horizontal == 15
-#     assert moved_sub.depth == 10
+def test_sub_moves_when_aimed_down():
+    sub = SubmarinePart2(0,0,5)
+    directions = ('forward',8)
+    sub.move(directions)
+    assert sub.horizontal == 8
+    assert sub.depth == 40
+    assert sub.aim == 5
+
+def test_sub_moves_when_aimed_up():
+    sub = SubmarinePart2(10,0,-3)
+    directions = ('forward',2)
+    sub.move(directions)
+    assert sub.horizontal == 2
+    assert sub.depth == 4
+    assert sub.aim == -3
+
+def test_sub_follows_test_directions():
+    sub = SubmarinePart2()
+    moved_sub = move_sub(sub,'input\\day2_test.txt')
+    assert moved_sub.horizontal == 15
+    assert moved_sub.depth == 60
