@@ -30,6 +30,6 @@ def move_sub(sub:Submarine, filename:str)-> Submarine:
 
 if __name__ == '__main__':
    sub = Submarine()
-   moved_sub = move_sub(sub,'input\day2.txt')
+   moved_sub = move_sub(sub,'input\\day2.txt')
    moved_sub.print_position()
    
