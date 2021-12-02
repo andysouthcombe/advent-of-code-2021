@@ -10,6 +10,21 @@ def test_sub_can_move_forward_level():
     assert sub.depth == 0
     assert sub.aim == 0
 
+def test_sub_can_aim_down():
+    sub = SubmarinePart2()
+    directions = ('down', 1)
+    sub.move(directions)
+    assert sub.horizontal == 0
+    assert sub.depth == 0
+    assert sub.aim == 1
+
+def test_sub_can_aim_up():
+    sub = SubmarinePart2(1,3,5)
+    directions = ('up', 2)
+    sub.move(directions)
+    assert sub.horizontal == 3
+    assert sub.depth == 1
+    assert sub.aim == 3
 
 # def test_sub_follows_test_directions():
 #     sub = SubmarinePart1()
