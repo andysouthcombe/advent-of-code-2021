@@ -83,5 +83,7 @@ if __name__ == '__main__':
     gamma_binary = get_gamma_rate(input_bits)
     power_consumption = int(gamma_binary, 2) * int(epsilon_binary, 2)
     print(f'Gamma_Binary is {gamma_binary} Epsilon_Binary is {epsilon_binary} Power Consumption is {power_consumption}')
-
+    oxygen_rating = get_oxygen_rating(input_bits)
+    co2_rating = get_co2_rating(input_bits)
+    print(f'Oxygen rating is {oxygen_rating} co2 rating is {co2_rating} multiplied is {oxygen_rating * co2_rating}')
     
