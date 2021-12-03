@@ -53,6 +53,29 @@ def get_oxygen_rating(input_list):
             break
     return int(output_list[0],2)
 
+def get_co2_rating(input_list):
+    num_cols = len(input_list[0])
+    output_list = input_list
+    for c in range(num_cols):
+        num_rows = len(output_list)
+        counts = get_column_counts(output_list, c)
+        sorted_counts = counts.most_common()
+        if sorted_counts[0][1] == sorted_counts[1][1]:
+            #tie so for CO2 set most common = 0
+            least_common = '0'
+        else:
+            least_common = sorted_counts[1][0]
+        new_output_list = []
+        
+        for r in range(num_rows) :    
+            if output_list[r][c] == least_common:
+                new_output_list.append(output_list[r])
+        output_list = new_output_list
+        if len(output_list) == 1:
+            break
+    return int(output_list[0],2)
+
+
 
 if __name__ == '__main__':
     input_bits = read_input('input\\day3.txt')

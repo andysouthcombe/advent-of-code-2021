@@ -1,6 +1,6 @@
 import pytest
 
-from aoc_day3 import get_epsilon_rate, get_gamma_rate, get_oxygen_rating, least_common_bit, most_common_bit, read_input
+from aoc_day3 import get_co2_rating, get_epsilon_rate, get_gamma_rate, get_oxygen_rating, least_common_bit, most_common_bit, read_input
 
 input_bits = read_input('input\\day3_test.txt')
 
@@ -35,3 +35,6 @@ def test_epsilon_times_gamma_is_correct():
 
 def test_get_oxygen_rating_correct_for_sample_data():
     assert get_oxygen_rating(input_bits) == 23
+
+def test_get_co2_rating_correct_for_sample_data():
+    assert get_co2_rating(input_bits) == 10
