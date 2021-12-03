@@ -27,3 +27,8 @@ def test_returns_correct_least_common_bit_for_second_test_column():
 def test_get_epsilon_rate_works_for_sample():
     output = get_epsilon_rate(input_bits)
     assert output == '01001'
+
+def test_epsilon_times_gamma_is_correct():
+    gamma_binary = get_gamma_rate(input_bits)
+    epsilon_binary = get_epsilon_rate(input_bits)
+    assert int(gamma_binary, 2) * int(epsilon_binary, 2) == 198
