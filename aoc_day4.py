@@ -2,6 +2,24 @@ class Card:
     def __init__(self):
         self.rows = []
         self.columns  = []
+    
+    def mark_number(self, number, line):
+        return list(filter(lambda card_number: (card_number != number), line))
+    
+    def check_for_winner(self, number):
+        have_a_winner = False
+        for row in self.rows:
+            row = self.mark_number(number, row)
+            if len(row) == 0:
+                have_a_winner = True
+                break
+        for column in self.columns:
+            column = self.mark_number(number, column)
+            if len(column) == 0:
+                have_a_winner = True
+                break
+        return have_a_winner
+
 
 def read_file(filename):
     with open(filename,'r') as f:
@@ -35,3 +53,5 @@ def read_cards(filename):
             continue
     return cards
 
+
+        

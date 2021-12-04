@@ -16,3 +16,8 @@ def test_card_rows_read_in_ok():
 def test_card_columns_read_in_ok():
     assert cards[0].columns[0] == [22,8,21,6,1]
     assert cards[2].columns[4] == [4,19,20,5,7]
+
+def test_mark_single_number():
+    card = cards[1]
+    assert card.mark_number(8, card.rows[2]) == [19,7,25,23]
+
