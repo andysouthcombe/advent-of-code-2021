@@ -1,7 +1,7 @@
 class Card:
     def __init__(self):
         self.rows = []
-    
+        self.columns  = []
 
 def read_file(filename):
     with open(filename,'r') as f:
@@ -20,6 +20,11 @@ def read_cards(filename):
         if len(line) > 0: 
             card.rows.append([int(number) for number in line.split()])
             if  row_num_for_this_card == 4:
+                for col in range(0,5):
+                    column = []
+                    for row in card.rows:
+                        column.append(row[col])
+                    card.columns.append(column)
                 cards.append(card)
                 card = Card()
                 row_num_for_this_card = 0
@@ -28,6 +33,5 @@ def read_cards(filename):
         else:
             #skip empty line
             continue
-
     return cards
 

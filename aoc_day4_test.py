@@ -13,3 +13,6 @@ def test_card_rows_read_in_ok():
     assert cards[0].rows[0] == [22,13,17,11,0]
     assert cards[2].rows[4] == [2,0,12,3,7]
 
+def test_card_columns_read_in_ok():
+    assert cards[0].columns[0] == [22,8,21,6,1]
+    assert cards[2].columns[4] == [4,19,20,5,7]
