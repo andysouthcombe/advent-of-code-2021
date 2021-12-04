@@ -21,3 +21,11 @@ def test_mark_single_number():
     card = cards[1]
     assert card.mark_number(8, card.rows[2]) == [19,7,25,23]
 
+def test_card_marked_correctly():
+    card = cards[0]
+    for number in [18, 23]:
+        card.mark_card(number)
+    assert card.rows[3] == [6, 10, 3, 5]
+    assert card.rows[1] == [8, 2, 4, 24]
+    assert card.columns[3] == [11, 4, 16, 15]
+    assert card.columns[2] == [17, 14, 3, 20]
