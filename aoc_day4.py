@@ -6,11 +6,19 @@ class Card:
     def mark_number(self, number, line):
         return list(filter(lambda card_number: (card_number != number), line))
     
-    def mark_card(self, number):
+    def mark_card_and_see_if_winner(self, number):
         for index, row in enumerate(self.rows):
             self.rows[index] = self.mark_number(number, row)
+            if self.check_for_winner(self.rows[index]):
+                return True
         for index, column in enumerate(self.columns):
             self.columns[index] = self.mark_number(number, column)
+            if self.check_for_winner(self.columns[index]):
+                return True
+        return False
+
+    def check_for_winner(self, line):
+        return len(line) == 0
 
 def read_file(filename):
     with open(filename,'r') as f:

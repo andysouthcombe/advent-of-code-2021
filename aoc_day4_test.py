@@ -24,8 +24,24 @@ def test_mark_single_number():
 def test_card_marked_correctly():
     card = cards[0]
     for number in [18, 23]:
-        card.mark_card(number)
+        card.mark_card_and_see_if_winner(number)
     assert card.rows[3] == [6, 10, 3, 5]
     assert card.rows[1] == [8, 2, 4, 24]
     assert card.columns[3] == [11, 4, 16, 15]
     assert card.columns[2] == [17, 14, 3, 20]
+
+def test_not_won_yet():
+    card = cards[0]
+    we_have_a_winner = False
+    for number in [18, 23]:
+        we_have_a_winner = card.mark_card_and_see_if_winner(number)
+    assert we_have_a_winner == False
+
+def test_winner():
+    card = cards[0]
+    we_have_a_winner = False
+    for number in [18, 5, 3, 10, 6]:
+        we_have_a_winner = card.mark_card_and_see_if_winner(number)
+    print(card.rows)
+    print(card.check_for_winner(card.rows[3]))
+    assert we_have_a_winner == True
