@@ -43,5 +43,12 @@ def test_winner():
     for number in [18, 5, 3, 10, 6]:
         we_have_a_winner = card.mark_card_and_see_if_winner(number)
     print(card.rows)
-    print(card.check_for_winner(card.rows[3]))
+    assert we_have_a_winner == True
+
+def test_sum_remaining():
+    card = cards[0]
+    we_have_a_winner = False
+    for number in [18, 5, 3, 10, 6]:
+        we_have_a_winner = card.mark_card_and_see_if_winner(number)
+    assert card.sum_remaining_numbers() == 235
     assert we_have_a_winner == True

@@ -19,6 +19,12 @@ class Card:
 
     def check_for_winner(self, line):
         return len(line) == 0
+    
+    def sum_remaining_numbers(self):
+        sum_remaining = 0 
+        for row in self.rows:
+            sum_remaining += sum(row)
+        return sum_remaining
 
 def read_file(filename):
     with open(filename,'r') as f:
@@ -51,6 +57,14 @@ def read_cards(filename):
             #skip empty line
             continue
     return cards
+
+# def play_bingo(filename):
+#     cards = read_cards(filename)
+#     numbers = read_numbers(filename)
+#     for number in numbers:
+#         for card in cards:
+#             have_we_got_a_winner = card.mark_card_and_see_if_winner(number)
+#             if have_we_got_a_winner:
 
 
         
