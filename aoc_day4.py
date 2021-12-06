@@ -55,7 +55,23 @@ def play_bingo(cards_filename, numbers_filename):
                 print(f'we have a winner! last number: {numbers_sliced[-1]} remaining on card: {card.sum_remaining_numbers(numbers_sliced)}')
                 return True
 
+def last_to_win(cards_filename, numbers_filename):
+    cards = read_cards(cards_filename)
+    numbers = read_numbers(numbers_filename)
+    cards_that_won = []
+    while len(cards) > 0:
+        for number_index in range(0, len(numbers)):
+            for card_index, card in enumerate(cards):
+                numbers_sliced = numbers[0:number_index + 1]
+                if card.check_for_winner(numbers_sliced):
+                    cards_that_won.append((card.sum_remaining_numbers(numbers_sliced), numbers_sliced[-1]))
+                    cards.pop(card_index)
+    print(f'we have a winner! last number: {cards_that_won[-1][1]} remaining on card: {cards_that_won[-1][0]}')
+    return True
+
 
 if __name__ == '__main__':
     play_bingo('input\\day_4_test_cards.txt','input\\day_4_test_numbers.txt')
-    play_bingo('input\\day_4_cards.txt','input\\day_4_numbers.txt')    
+    play_bingo('input\\day_4_cards.txt','input\\day_4_numbers.txt')
+    last_to_win('input\\day_4_test_cards.txt','input\\day_4_test_numbers.txt')
+    last_to_win('input\\day_4_cards.txt','input\\day_4_numbers.txt')
