@@ -1,30 +1,22 @@
 class Card:
     def __init__(self):
         self.rows = []
-        self.columns  = []
     
-    def mark_number(self, number, line):
-        return list(filter(lambda card_number: (card_number != number), line))
-    
-    def mark_card_and_see_if_winner(self, number):
-        for index, row in enumerate(self.rows):
-            self.rows[index] = self.mark_number(number, row)
-            if self.check_for_winner(self.rows[index]):
-                return True
-        for index, column in enumerate(self.columns):
-            self.columns[index] = self.mark_number(number, column)
-            if self.check_for_winner(self.columns[index]):
+    def mark_numbers(self, numbers, line):
+        return list(filter(lambda card_number: (card_number not in numbers), line))
+
+    def check_for_winner(self, numbers):
+        for line in self.rows + self.get_columns():
+            if len(self.mark_numbers(numbers, line)) == 0:
                 return True
         return False
-
-    def check_for_winner(self, line):
-        return len(line) == 0
     
-    def sum_remaining_numbers(self):
-        sum_remaining = 0 
-        for row in self.rows:
-            sum_remaining += sum(row)
-        return sum_remaining
+    def sum_remaining_numbers(self, numbers):
+        return sum([sum(self.mark_numbers(numbers, line)) for line in self.rows])
+        
+    
+    def get_columns(self):
+        return [list(column) for column in zip(*self.rows)]
 
 def read_file(filename):
     with open(filename,'r') as f:
@@ -43,11 +35,6 @@ def read_cards(filename):
         if len(line) > 0: 
             card.rows.append([int(number) for number in line.split()])
             if  row_num_for_this_card == 4:
-                for col in range(0,5):
-                    column = []
-                    for row in card.rows:
-                        column.append(row[col])
-                    card.columns.append(column)
                 cards.append(card)
                 card = Card()
                 row_num_for_this_card = 0
@@ -61,11 +48,11 @@ def read_cards(filename):
 def play_bingo(cards_filename, numbers_filename):
     cards = read_cards(cards_filename)
     numbers = read_numbers(numbers_filename)
-    for number in numbers:
+    for number_index in range(0, len(numbers)):
         for card in cards:
-            have_we_got_a_winner = card.mark_card_and_see_if_winner(number)
-            if have_we_got_a_winner:
-                print(f'we have a winner! last number: {number} remaining on card: {card.sum_remaining_numbers()}')
+            numbers_sliced = numbers[0:number_index + 1]
+            if card.check_for_winner(numbers_sliced):
+                print(f'we have a winner! last number: {numbers_sliced[-1]} remaining on card: {card.sum_remaining_numbers(numbers_sliced)}')
                 return True
 
 

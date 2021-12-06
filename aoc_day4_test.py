@@ -14,41 +14,27 @@ def test_card_rows_read_in_ok():
     assert cards[2].rows[4] == [2,0,12,3,7]
 
 def test_card_columns_read_in_ok():
-    assert cards[0].columns[0] == [22,8,21,6,1]
-    assert cards[2].columns[4] == [4,19,20,5,7]
+    assert cards[0].get_columns()[0] == [22,8,21,6,1]
+    assert cards[2].get_columns()[4] == [4,19,20,5,7]
 
-def test_mark_single_number():
-    card = cards[1]
-    assert card.mark_number(8, card.rows[2]) == [19,7,25,23]
-
-def test_card_marked_correctly():
-    card = cards[0]
-    for number in [18, 23]:
-        card.mark_card_and_see_if_winner(number)
-    assert card.rows[3] == [6, 10, 3, 5]
-    assert card.rows[1] == [8, 2, 4, 24]
-    assert card.columns[3] == [11, 4, 16, 15]
-    assert card.columns[2] == [17, 14, 3, 20]
 
 def test_not_won_yet():
-    card = cards[0]
-    we_have_a_winner = False
-    for number in [18, 23]:
-        we_have_a_winner = card.mark_card_and_see_if_winner(number)
-    assert we_have_a_winner == False
+     card = cards[0]
+     we_have_a_winner = False
+     test_numbers = [18, 23]
+     we_have_a_winner = card.check_for_winner(test_numbers)
+     assert we_have_a_winner == False
 
 def test_winner():
-    card = cards[0]
-    we_have_a_winner = False
-    for number in [18, 5, 3, 10, 6]:
-        we_have_a_winner = card.mark_card_and_see_if_winner(number)
-    print(card.rows)
-    assert we_have_a_winner == True
+     card = cards[0]
+     we_have_a_winner = False
+     test_numbers = [18, 5, 3, 10, 6]
+     we_have_a_winner = card.check_for_winner(test_numbers)
+     assert we_have_a_winner == True
 
 def test_sum_remaining():
     card = cards[0]
-    we_have_a_winner = False
-    for number in [18, 5, 3, 10, 6]:
-        we_have_a_winner = card.mark_card_and_see_if_winner(number)
-    assert card.sum_remaining_numbers() == 235
-    assert we_have_a_winner == True
+    test_numbers = [18, 5, 3, 10, 6]
+    print(card.sum_remaining_numbers(test_numbers))
+    assert card.check_for_winner(test_numbers) == True
+    assert card.sum_remaining_numbers(test_numbers) == 258
