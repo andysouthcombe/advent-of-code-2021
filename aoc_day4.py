@@ -58,13 +58,17 @@ def read_cards(filename):
             continue
     return cards
 
-# def play_bingo(filename):
-#     cards = read_cards(filename)
-#     numbers = read_numbers(filename)
-#     for number in numbers:
-#         for card in cards:
-#             have_we_got_a_winner = card.mark_card_and_see_if_winner(number)
-#             if have_we_got_a_winner:
+def play_bingo(cards_filename, numbers_filename):
+    cards = read_cards(cards_filename)
+    numbers = read_numbers(numbers_filename)
+    for number in numbers:
+        for card in cards:
+            have_we_got_a_winner = card.mark_card_and_see_if_winner(number)
+            if have_we_got_a_winner:
+                print(f'we have a winner! last number: {number} remaining on card: {card.sum_remaining_numbers()}')
+                return True
 
 
-        
+if __name__ == '__main__':
+    play_bingo('input\\day_4_test_cards.txt','input\\day_4_test_numbers.txt')
+    play_bingo('input\\day_4_cards.txt','input\\day_4_numbers.txt')    
