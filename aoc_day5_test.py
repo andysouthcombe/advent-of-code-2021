@@ -1,6 +1,6 @@
 import pytest
 
-from aoc_day5 import coords, grid, line, not_diagonal, read_lines
+from aoc_day5 import coords, get_all_coords_on_line, grid, line, not_diagonal, read_lines
 
 lines = read_lines('input\\day_5_test.txt')
 test_grid = grid(lines)
@@ -34,5 +34,17 @@ def test_grid_returns_non_diagonal_lines():
         line(coords(3,4), coords(1,4))])
     assert test_grid.get_non_diagonal_lines() == expected_grid.lines
 
-def test_get_grid_size_works_for_test_gird():
+def test_get_grid_size_works_for_test_grid():
     assert test_grid.get_grid_size(test_grid.get_non_diagonal_lines()) == (coords(0,0) , coords(9,9))
+
+def test_get_all_coords_on_horizontal_line():
+    test_line_1 = line(coords(3,4), coords(1,4))
+    assert get_all_coords_on_line(test_line_1) == [coords(3,4), coords(2,4), coords(1,4)]
+
+def test_get_all_coords_on_vertical_line():
+    test_line_2 = line(coords(7,0), coords(7,4))
+    assert get_all_coords_on_line(test_line_2) == [coords(7,0), coords(7,1), coords(7,2), coords(7,3), coords(7,4)]
+
+def test_count_points_with_more_than_one_line_on_test_grid():
+    print(test_grid.count_points_with_multiple_non_diagonal_lines_overlapping())
+    assert test_grid.count_points_with_multiple_non_diagonal_lines_overlapping() == 5
