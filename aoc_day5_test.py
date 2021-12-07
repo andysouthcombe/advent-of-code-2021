@@ -1,7 +1,9 @@
 import pytest
 
 from aoc_day5 import coords, grid, line, not_diagonal, read_lines
+
 lines = read_lines('input\\day_5_test.txt')
+test_grid = grid(lines)
 
 def test_read_lines_correctly():
     assert lines[0] == line(start = coords(x=0,y=9),end = coords(x=5,y=9))
@@ -24,7 +26,6 @@ def test_line_not_diagonal_for_diagonal_line():
     assert not_diagonal(line(coords(0,8),coords(5,9))) == False
 
 def test_grid_returns_non_diagonal_lines():
-    test_grid = grid(lines)
     expected_grid = grid([line(coords(0,9), coords(5,9)),
         line(coords(9,4), coords(3,4)),
         line(coords(2,2), coords(2,1)),
@@ -33,3 +34,5 @@ def test_grid_returns_non_diagonal_lines():
         line(coords(3,4), coords(1,4))])
     assert test_grid.get_non_diagonal_lines() == expected_grid.lines
 
+def test_get_grid_size_works_for_test_gird():
+    assert test_grid.get_grid_size(test_grid.get_non_diagonal_lines()) == (coords(0,0) , coords(9,9))

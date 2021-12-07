@@ -20,6 +20,11 @@ class grid:
     
     def get_non_diagonal_lines(self):
         return list(filter(not_diagonal, self.lines))
+    
+    def get_grid_size(self, lines):
+        x_coords = [line.start.x for line in lines] + [line.end.x for line in lines]
+        y_coords = [line.start.y for line in lines] + [line.end.y for line in lines]
+        return coords(min(x_coords),min(y_coords)), coords(max(x_coords), max(y_coords))
 
 def read_lines(filename):
     with open(filename,'r') as f:
