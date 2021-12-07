@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import List
 
 @dataclass
 class coords:
@@ -13,12 +14,12 @@ class line:
 def not_diagonal(line):
     return line.start.x == line.end.x or line.start.y == line.end.y
 
+@dataclass
 class grid:
-    def __init__(self, lines):
-        self.lines = lines
+    lines: List
     
     def get_non_diagonal_lines(self):
-        return [list(filter(not_diagonal, self.lines))]
+        return list(filter(not_diagonal, self.lines))
 
 def read_lines(filename):
     with open(filename,'r') as f:
