@@ -10,7 +10,6 @@ class line:
     start: coords
     end: coords
 
-
 def read_lines(filename):
     with open(filename,'r') as f:
         raw_lines = [raw_line.rstrip().split(' -> ') for raw_line in f.readlines()]

@@ -5,6 +5,7 @@ lines = read_lines('input\\day_5_test.txt')
 
 def test_read_lines_correctly():
     assert lines[0] == line(start = coords(x=0,y=9),end = coords(x=5,y=9))
+    assert lines[1] == line(start = coords(x=8,y=0),end = coords(x=0,y=8))
 
 def test_line_eq_operator():
     line_1 = line(coords(0,9),coords(5,9))
