@@ -10,6 +10,16 @@ class line:
     start: coords
     end: coords
 
+def not_diagonal(line):
+    return line.start.x == line.end.x or line.start.y == line.end.y
+
+class grid:
+    def __init__(self, lines):
+        self.lines = lines
+    
+    def get_non_diagonal_lines(self):
+        return [list(filter(not_diagonal, self.lines))]
+
 def read_lines(filename):
     with open(filename,'r') as f:
         raw_lines = [raw_line.rstrip().split(' -> ') for raw_line in f.readlines()]

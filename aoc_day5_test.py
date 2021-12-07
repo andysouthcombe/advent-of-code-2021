@@ -1,6 +1,6 @@
 import pytest
 
-from aoc_day5 import coords, line, read_lines
+from aoc_day5 import coords, line, not_diagonal, read_lines
 lines = read_lines('input\\day_5_test.txt')
 
 def test_read_lines_correctly():
@@ -13,3 +13,12 @@ def test_line_eq_operator():
     line_3 = line(coords(0,8),coords(5,9))
     assert line_1 == line_2
     assert line_1 != line_3
+
+def test_line_not_diagonal_for_horiztonal_line():
+    assert not_diagonal(line(coords(0,9),coords(5,9))) == True
+
+def test_line_not_diagonal_for_vertical_line():
+    assert not_diagonal(line(coords(0,6),coords(0,7))) == True
+
+def test_line_not_diagonal_for_diagonal_line():
+    assert not_diagonal(line(coords(0,8),coords(5,9))) == False
