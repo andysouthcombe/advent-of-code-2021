@@ -9,12 +9,13 @@ def get_number_fish_per_age(fishes):
         fish_per_age.append(fishes.count(age))
     return fish_per_age
 
-def day_pass(fish_per_age):
-    fish_day_later = []
-    for index in range(0,len(fish_per_age)-1):
-        fish_day_later.append(fish_per_age[index+1])
-    
-    return fish_day_later
+def day_pass(starting_fish_per_age):
+    fish_per_age_day_later = []
+    for index in range(0,len(starting_fish_per_age)-1):
+        fish_per_age_day_later.append(starting_fish_per_age[index+1])
+    fish_per_age_day_later[6] = fish_per_age_day_later[6] + starting_fish_per_age[0]
+    fish_per_age_day_later.append(starting_fish_per_age[0])
+    return fish_per_age_day_later
 
         
 

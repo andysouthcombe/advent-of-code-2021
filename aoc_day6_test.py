@@ -16,16 +16,15 @@ def test_fish_per_age_totals_test_input():
 def test_day_pass_moves_fish_ages_down():
     assert day_pass(fish_per_age)[0] == 1
 
-# def test_timer_decrements_0_to_6():
-#     day_1 = day_pass(test_fishes)
-#     day_2 = day_pass(day_1)
-#     assert day_2[3] == 6
+def test_day_pass_resets_age_to_6():
+    day_1 =  day_pass(fish_per_age)
+    day_2 =  day_pass(day_1)
+    assert day_2[6] == 1
 
-# def test_extra_fish_when_hit_zero():
-#     day_1 = day_pass(test_fishes)
-#     day_2 = day_pass(day_1)
-#     assert len(day_2) == len(test_fishes)+1
-#     assert day_2[-1] == 8
+def test_extra_fish_when_hit_zero():
+     day_1 = day_pass(fish_per_age)
+     day_2 = day_pass(day_1)
+     assert day_2[8] == 1
 
 # def test_pass_days_gives_right_number_of_fish_for_test_case():
 #     output_fish = pass_days(test_fishes, 18)
