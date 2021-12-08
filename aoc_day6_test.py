@@ -1,7 +1,7 @@
 from os import read
 import pytest
 
-from aoc_day6 import day_pass, get_number_fish_per_age, read_file
+from aoc_day6 import day_pass, get_number_fish_per_age, pass_days, read_file
 
 test_fishes = read_file('input\\day6_test.txt')
 fish_per_age = get_number_fish_per_age(test_fishes)
@@ -26,7 +26,7 @@ def test_extra_fish_when_hit_zero():
      day_2 = day_pass(day_1)
      assert day_2[8] == 1
 
-# def test_pass_days_gives_right_number_of_fish_for_test_case():
-#     output_fish = pass_days(test_fishes, 18)
-#     print(output_fish)
-#     assert len(output_fish) == 26
+def test_pass_days_gives_right_number_of_fish_for_test_case():
+    output_fish = pass_days(fish_per_age, 18)
+    print(output_fish)
+    assert sum(output_fish) == 26
