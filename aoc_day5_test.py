@@ -45,6 +45,15 @@ def test_get_all_coords_on_vertical_line():
     test_line_2 = line(coords(7,0), coords(7,4))
     assert get_all_coords_on_line(test_line_2) == [coords(7,0), coords(7,1), coords(7,2), coords(7,3), coords(7,4)]
 
-def test_count_points_with_more_than_one_line_on_test_grid():
-    print(test_grid.count_points_with_multiple_non_diagonal_lines_overlapping())
+def test_get_all_coords_on_diagonal_line():
+    test_line_3 = line(coords(1,1), coords(3,3))
+    test_line_4 = line(coords(9,7), coords(7,9)) 
+    print(get_all_coords_on_line(test_line_3))
+    assert get_all_coords_on_line(test_line_3) == [coords(1,1), coords(2,2), coords(3,3)]
+    assert get_all_coords_on_line(test_line_4) == [coords(9,7), coords(8,8), coords(7,9)]
+
+def test_count_points_with_more_than_one__non_diagonal_line_on_test_grid():
     assert test_grid.count_points_with_multiple_non_diagonal_lines_overlapping() == 5
+
+def test_count_points_with_more_than_one__line_on_test_grid():
+    assert test_grid.count_points_with_multiple_lines_overlapping() == 12
