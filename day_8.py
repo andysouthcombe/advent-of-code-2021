@@ -30,9 +30,15 @@ def get_signals_with_distinct_counts(signals):
     return [signal for signal in signals if len(signal) in [2,4,3,7]]
 
 def identify_signals_for_easy_numbers(distinct_signals):
-    return [(signal, signal_count_to_digit_dict[len(signal)]) for signal in distinct_signals]
-        
+    return [(signal, signal_count_to_digit_dict[len(signal)]) for signal in distinct_signals if len(signal) in [2,4,3,7]]
+
+def identify_top_line(signals_for_one, signals_for_seven):
+    return list(set(signals_for_seven) - set(signals_for_one))[0]
+    
+
+
 
 if __name__ == '__main__':
     signals, outputs = read_and_split_file('input\\day8.txt')
-    print(count_digits_in_output_with_distinct_signal_count(outputs))
+    for signal in signals:
+        print(identify_signals_for_easy_numbers(signal))
