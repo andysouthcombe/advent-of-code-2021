@@ -11,9 +11,9 @@ def get_number_fish_per_age(fishes):
 
 def day_pass(fish_per_age):
     fish_day_later = []
-    for index in range(0,len(fish_per_age)):
-        if index < 8:
-            fish_day_later.append(fish_per_age[index+1])
+    for index in range(0,len(fish_per_age)-1):
+        fish_day_later.append(fish_per_age[index+1])
+    
     return fish_day_later
 
         
