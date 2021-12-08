@@ -1,12 +1,17 @@
 from os import read
 import pytest
 
-from aoc_day6 import day_pass, pass_days, read_file
+from aoc_day6 import day_pass, get_number_fish_per_age, pass_days, read_file
 
 test_fishes = read_file('input\\day6_test.txt')
+fish_per_age = get_number_fish_per_age(test_fishes)
 
 def test_file_read_ok():
     assert len(test_fishes) == 5
+
+def test_fish_per_age_totals_test_input():
+    assert len(fish_per_age) == 9
+    assert fish_per_age == [0,1,1,2,1,0,0,0,0]
 
 def test_timer_decrements_number_greater_than_1():
     assert day_pass(test_fishes)[0] == 2
