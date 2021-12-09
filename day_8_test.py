@@ -16,10 +16,10 @@ def test_get_signals_with_distinct_counts_returns_right_signals():
     assert get_signals_with_distinct_counts(test_signals[0])== ['be', 'cfbegad', 'cgeb', 'edb']
 
 def test_identify_signals_for_easy_numbers():
-    assert identify_signals_for_easy_numbers(['be', 'cfbegad', 'cgeb', 'edb']) == [('be', 1),('cfbegad', 8), ('cgeb', 4),('edb',7)]
+    assert identify_signals_for_easy_numbers(['be', 'cfbegad', 'cgeb', 'edb']) == [(set('be'), 1),(set('cfbegad'), 8), (set('cgeb'), 4),(set('edb'),7)]
 
 def test_identify_top_line():
-    assert identify_top_line('be', 'edb') == 'd'
+    assert identify_top_line('be', 'edb') == set('d')
 
 def test_find_known_digits_in_output():
     known_signals = [('cegd', 4), ('cgb', 7), ('gbdefca', 8), ('cg', 1)]
@@ -43,7 +43,13 @@ def test_find_number_zero():
     signals = ['acedgfb', 'cdfbe', 'gcdfa', 'fbcad', 'dab', 'cefabd', 'cdfgeb', 'eafb', 'cagedb', 'ab']
     output = ['cdfeb', 'fcadb', 'cdfeb', 'cdbaf']
     known_signals, known_output_digits = decode_signals_and_output(signals, output)
-    assert get_signals_for_number(known_signals,0) == 'cagedb'
+    assert get_signals_for_number(known_signals,0) == set('cagedb')
+
+def test_find_number_five():
+    signals = ['acedgfb', 'cdfbe', 'gcdfa', 'fbcad', 'dab', 'cefabd', 'cdfgeb', 'eafb', 'cagedb', 'ab']
+    output = ['cdfeb', 'fcadb', 'cdfeb', 'cdbaf']
+    known_signals, known_output_digits = decode_signals_and_output(signals, output)
+    assert get_signals_for_number(known_signals,5) == set('cdfbe')
 
 def test_decode_signals_easy_numbers():
      known_signals, known_output_digits = decode_signals_and_output(['egadfb', 'cdbfeg', 'cegd', 'fecab', 'cgb', 'gbdefca', 'cg', 'fgcdab', 'egfdb', 'bfceg'],['gbdfcae', 'bgc', 'cg', 'cgb'])

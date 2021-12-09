@@ -33,10 +33,10 @@ def get_signals_with_distinct_counts(signals):
     return [signal for signal in signals if len(signal) in [2,4,3,7]]
 
 def identify_signals_for_easy_numbers(distinct_signals):
-    return [(signal, signal_count_to_digit_dict[len(signal)]) for signal in distinct_signals if len(signal) in [2,4,3,7]]
+    return [(set(signal), signal_count_to_digit_dict[len(signal)]) for signal in distinct_signals if len(signal) in [2,4,3,7]]
 
 def identify_top_line(signals_for_one, signals_for_seven):
-    return list(set(signals_for_seven) - set(signals_for_one))[0]
+    return set(signals_for_seven) - set(signals_for_one)
 
 def find_known_digits_in_output(known_signals,output):
     known_digits = [None] * 4
@@ -53,23 +53,30 @@ def find_number_six(easy_number_signals, signals):
         if len(signal) == 6:
             # the other digits with 6 signals(0,9) have all elements of signal for 1
             if not set(signal_for_one).issubset(signal):
-                return signal
+                return set(signal)
     return None
 
 def find_number_nine(known_signals, signals,top_line_signal):
-    signal_for_four = set(get_signals_for_number(known_signals, 4))
+    signal_for_four = get_signals_for_number(known_signals, 4)
     for signal in signals:
         if len(signal) == 6:
-            if len(set(signal) - set(signal_for_four) - set(top_line_signal)) == 1:
-                return signal
+            if len(set(signal) - signal_for_four - top_line_signal) == 1:
+                return set(signal)
     return None
 
 def find_number_zero(known_signals, full_signals):
     signal_for_six = get_signals_for_number(known_signals, 6)
     signal_for_nine = get_signals_for_number(known_signals, 9)
     for signal in full_signals:
-        if len(signal) == 6 and set(signal) != set(signal_for_six) and set(signal) != set(signal_for_nine):
-            return signal
+        if len(signal) == 6 and set(signal) != signal_for_six and set(signal) != signal_for_nine:
+            return set(signal)
+
+def find_number_five(known_signals):
+    signal_for_nine = get_signals_for_number(known_signals, 9)
+    signal_for_eight = get_signals_for_number(known_signals, 6)
+    signal_for_six = get_signals_for_number(known_signals, 6)
+    bottom_left = signal_for_eight - signal_for_nine
+    return signal_for_six - bottom_left
 
 def decode_signals_and_output(signals, output):
     full_signals = signals + output
@@ -78,6 +85,7 @@ def decode_signals_and_output(signals, output):
     top_line_signal = identify_top_line(get_signals_for_number(known_signals, 1),get_signals_for_number(known_signals,7))
     known_signals.append((find_number_nine(known_signals, full_signals, top_line_signal), 9))
     known_signals.append((find_number_zero(known_signals, full_signals), 0))
+    known_signals.append((find_number_five(known_signals), 5))
     known_output_digits = find_known_digits_in_output(known_signals, output)
     return known_signals, known_output_digits
 
