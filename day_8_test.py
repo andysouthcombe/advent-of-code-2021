@@ -1,6 +1,6 @@
 import pytest
 
-from day_8 import count_digits_in_output_with_distinct_signal_count, decode_signals_and_output, find_known_digits_in_output, find_number_nine, find_number_six, get_signals_for_number, get_signals_with_distinct_counts, identify_signals_for_easy_numbers, identify_top_line, read_and_split_file
+from day_8 import count_digits_in_output_with_distinct_signal_count, decode_list_of_signals_and_sum_output, decode_signals_and_output, find_known_digits_in_output, find_number_nine, find_number_six, get_signals_for_number, get_signals_with_distinct_counts, identify_signals_for_easy_numbers, identify_top_line, read_and_split_file
 
 test_signals, test_outputs = read_and_split_file('input\\day8_test.txt')
 
@@ -70,3 +70,6 @@ def test_decode_signals_easy_numbers():
 def test_decode_signals_easy_numbers_and_nine():
     known_signals, known_output_digits = decode_signals_and_output( ['edbfga', 'begcd', 'cbg',  'gc',  'gcadebf',  'fbgde', 'acbgfd', 'abcde', 'gfcbed', 'gfec'], ['fcgedb', 'cgb', 'dgebacf', 'gc'])
     assert known_output_digits == [9, 7, 8, 1]
+
+def test_decode_list_of_signals_and_sum_output_works_for_test_data():
+    assert decode_list_of_signals_and_sum_output(test_signals, test_outputs) == 61229

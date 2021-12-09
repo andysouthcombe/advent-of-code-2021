@@ -107,8 +107,13 @@ def decode_signals_and_output(signals, output):
     known_output_digits = find_known_digits_in_output(known_signals, output)
     return known_signals, known_output_digits
 
-    
-
+def decode_list_of_signals_and_sum_output(signals_list,outputs_list):
+    output_sum = 0
+    for index in range (0,len(outputs_list)):
+        known_signals, known_output_digits = decode_signals_and_output(signals_list[index],outputs_list[index])
+        output_sum += int("".join(map(str, known_output_digits)))
+    return output_sum
+        
 
 
 if __name__ == '__main__':
