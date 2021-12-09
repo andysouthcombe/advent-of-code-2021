@@ -87,6 +87,13 @@ def find_number_two(known_signals,full_signals):
         if bottom_left.issubset(signal) and signal != signal_for_five:
             return signal
 
+def find_number_three(known_signals,full_signals):
+    signal_for_five = get_signals_for_number(known_signals, 5)
+    signal_for_two = get_signals_for_number(known_signals, 2)
+    for signal in [set(signal) for signal in full_signals if len(signal) == 5]:
+        if signal != signal_for_two and signal != signal_for_five:
+            return signal
+
 def decode_signals_and_output(signals, output):
     full_signals = signals + output
     known_signals = identify_signals_for_easy_numbers(full_signals)
@@ -96,6 +103,7 @@ def decode_signals_and_output(signals, output):
     known_signals.append((find_number_zero(known_signals, full_signals), 0))
     known_signals.append((find_number_five(known_signals), 5))
     known_signals.append((find_number_two(known_signals, full_signals), 2))
+    known_signals.append((find_number_three(known_signals, full_signals), 3))
     known_output_digits = find_known_digits_in_output(known_signals, output)
     return known_signals, known_output_digits
 

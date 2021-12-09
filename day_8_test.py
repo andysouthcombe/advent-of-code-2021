@@ -57,6 +57,12 @@ def test_find_number_two():
     known_signals, known_output_digits = decode_signals_and_output(signals, output)
     assert get_signals_for_number(known_signals,2) == set('gcdfa')
 
+def test_find_number_three():
+    signals = ['acedgfb', 'cdfbe', 'gcdfa', 'fbcad', 'dab', 'cefabd', 'cdfgeb', 'eafb', 'cagedb', 'ab']
+    output = ['cdfeb', 'fcadb', 'cdfeb', 'cdbaf']
+    known_signals, known_output_digits = decode_signals_and_output(signals, output)
+    assert get_signals_for_number(known_signals,2) == set('gcdfa')
+
 def test_decode_signals_easy_numbers():
      known_signals, known_output_digits = decode_signals_and_output(['egadfb', 'cdbfeg', 'cegd', 'fecab', 'cgb', 'gbdefca', 'cg', 'fgcdab', 'egfdb', 'bfceg'],['gbdfcae', 'bgc', 'cg', 'cgb'])
      assert known_output_digits == [8, 7, 1, 7]
