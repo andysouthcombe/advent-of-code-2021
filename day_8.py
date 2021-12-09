@@ -26,6 +26,9 @@ def count_digits_in_output_with_distinct_signal_count(output_list):
                 counter += 1
     return counter
 
+def get_signals_for_number(known_signals,number):
+    return [signal[0] for signal in known_signals if signal[1] == number][0]
+
 def get_signals_with_distinct_counts(signals):
     return [signal for signal in signals if len(signal) in [2,4,3,7]]
 
@@ -45,7 +48,7 @@ def find_known_digits_in_output(known_signals,output):
     return [known_digit for known_digit in known_digits if known_digit is not None]
     
 def find_number_six(easy_number_signals, signals):
-    signal_for_one = set([signal[0] for signal in easy_number_signals if signal[1] == 1][0])
+    signal_for_one = set(get_signals_for_number(easy_number_signals, 1))
     for signal in signals:
         if len(signal) == 6:
             # the other digits with 6 signals(0,9) have all elements of signal for 1
@@ -53,15 +56,26 @@ def find_number_six(easy_number_signals, signals):
                 return signal
     return None
 
+def find_number_nine(known_signals, signals,top_line_signal):
+    signal_for_four = set(get_signals_for_number(known_signals, 4))
+    for signal in signals:
+        if len(signal) == 6:
+            if len(set(signal) - set(signal_for_four) - set(top_line_signal)) == 1:
+                return signal
+    return None
+
+
+
 def decode_signals_and_output(signals, output):
-    easy_number_signals = identify_signals_for_easy_numbers(signals + output)
-    known_digits = find_known_digits_in_output(easy_number_signals, output)
-    # if the digits only contain easy numbers let's finish here!
-    if len(known_digits) == len(output):
-        return known_digits
-    # work out number six
-    find_number_six(easy_number_signals, signals)
-    return 1
+    
+    known_signals = identify_signals_for_easy_numbers(signals + output)
+    known_output_digits = find_known_digits_in_output(known_signals, output)
+    while len(known_output_digits) < len(output):
+        known_signals.append((find_number_six(known_signals, signals), 6))
+        known_output_digits = find_known_digits_in_output(known_signals, output)
+        top_line_signal = identify_top_line(known_signals)
+
+    return known_output_digits
 
     
 

@@ -1,6 +1,6 @@
 import pytest
 
-from day_8 import count_digits_in_output_with_distinct_signal_count, decode_signals_and_output, find_known_digits_in_output, find_number_six, get_signals_with_distinct_counts, identify_signals_for_easy_numbers, identify_top_line, read_and_split_file
+from day_8 import count_digits_in_output_with_distinct_signal_count, decode_signals_and_output, find_known_digits_in_output, find_number_nine, find_number_six, get_signals_for_number, get_signals_with_distinct_counts, identify_signals_for_easy_numbers, identify_top_line, read_and_split_file
 
 test_signals, test_outputs = read_and_split_file('input\\day8_test.txt')
 
@@ -32,6 +32,12 @@ def test_find_number_six():
     easy_number_signals = identify_signals_for_easy_numbers(signals + output)
     assert set(find_number_six(easy_number_signals, signals + output)) == set('gadfec')
 
+def test_find_number_nine():
+    signals = ['fbegcd', 'cbd', 'adcefb', 'dageb', 'afcb', 'bc', 'aefdc', 'ecdab', 'fgdeca', 'fcdbega']
+    output = ['efabcd', 'cedba', 'gadfec', 'cb']
+    easy_number_signals = identify_signals_for_easy_numbers(signals + output)
+    top_line_signal = identify_top_line(get_signals_for_number(easy_number_signals,1),get_signals_for_number(easy_number_signals,7))
+    assert set(find_number_nine(easy_number_signals, signals + output,top_line_signal)) == set('efabcd')
 
 def test_decode_signals_easy_numbers():
     assert decode_signals_and_output(['egadfb', 'cdbfeg', 'cegd', 'fecab', 'cgb', 'gbdefca', 'cg', 'fgcdab', 'egfdb', 'bfceg'],['gbdfcae', 'bgc', 'cg', 'cgb']) == [8, 7, 1, 7]
