@@ -44,13 +44,27 @@ def find_known_digits_in_output(known_signals,output):
                 known_digits[index] = signal[1]
     return [known_digit for known_digit in known_digits if known_digit is not None]
     
+def find_number_six(easy_number_signals, signals):
+    signal_for_one = set([signal[0] for signal in easy_number_signals if signal[1] == 1][0])
+    for signal in signals:
+        if len(signal) == 6:
+            # the other digits with 6 signals(0,9) have all elements of signal for 1
+            if not set(signal_for_one).issubset(signal):
+                return signal
+    return None
 
-    
 def decode_signals_and_output(signals, output):
-    easy_number_signals = identify_signals_for_easy_numbers(signals)
+    easy_number_signals = identify_signals_for_easy_numbers(signals + output)
     known_digits = find_known_digits_in_output(easy_number_signals, output)
+    # if the digits only contain easy numbers let's finish here!
     if len(known_digits) == len(output):
         return known_digits
+    # work out number six
+    find_number_six(easy_number_signals, signals)
+    return 1
+
+    
+
 
 
 if __name__ == '__main__':
