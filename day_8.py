@@ -42,10 +42,10 @@ def find_known_digits_in_output(known_signals,output):
     known_digits = [None] * 4
     for index, digit in enumerate(output):
         for signal in known_signals:
-            print(set(digit),set(signal[0]))
             if set(digit) == set(signal[0]):
                 known_digits[index] = signal[1]
-    return [known_digit for known_digit in known_digits if known_digit is not None]
+    return known_digits
+    #return [known_digit for known_digit in known_digits if known_digit is not None]
     
 def find_number_six(easy_number_signals, signals):
     signal_for_one = set(get_signals_for_number(easy_number_signals, 1))
@@ -65,16 +65,14 @@ def find_number_nine(known_signals, signals,top_line_signal):
     return None
 
 
-
 def decode_signals_and_output(signals, output):
-    
-    known_signals = identify_signals_for_easy_numbers(signals + output)
+    full_signals = signals + output
+    known_signals = identify_signals_for_easy_numbers(full_signals)
+    known_signals.append((find_number_six(known_signals, full_signals), 6))
+    top_line_signal = identify_top_line(get_signals_for_number(known_signals, 1),get_signals_for_number(known_signals,7))
+    known_signals.append((find_number_nine(known_signals, full_signals, top_line_signal), 9))
     known_output_digits = find_known_digits_in_output(known_signals, output)
-    while len(known_output_digits) < len(output):
-        known_signals.append((find_number_six(known_signals, signals), 6))
-        known_output_digits = find_known_digits_in_output(known_signals, output)
-        top_line_signal = identify_top_line(known_signals)
-
+    print(known_signals)
     return known_output_digits
 
     

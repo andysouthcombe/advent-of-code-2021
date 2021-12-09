@@ -41,3 +41,6 @@ def test_find_number_nine():
 
 def test_decode_signals_easy_numbers():
     assert decode_signals_and_output(['egadfb', 'cdbfeg', 'cegd', 'fecab', 'cgb', 'gbdefca', 'cg', 'fgcdab', 'egfdb', 'bfceg'],['gbdfcae', 'bgc', 'cg', 'cgb']) == [8, 7, 1, 7]
+
+def test_decode_signals_easy_numbers_and_nine():
+    assert decode_signals_and_output( ['edbfga', 'begcd', 'cbg',  'gc',  'gcadebf',  'fbgde', 'acbgfd', 'abcde', 'gfcbed', 'gfec'], ['fcgedb', 'cgb', 'dgebacf', 'gc']) == [9, 7, 8, 1]
