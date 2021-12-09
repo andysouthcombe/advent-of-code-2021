@@ -39,8 +39,16 @@ def test_find_number_nine():
     top_line_signal = identify_top_line(get_signals_for_number(easy_number_signals,1),get_signals_for_number(easy_number_signals,7))
     assert set(find_number_nine(easy_number_signals, signals + output,top_line_signal)) == set('efabcd')
 
+def test_find_number_zero():
+    signals = ['acedgfb', 'cdfbe', 'gcdfa', 'fbcad', 'dab', 'cefabd', 'cdfgeb', 'eafb', 'cagedb', 'ab']
+    output = ['cdfeb', 'fcadb', 'cdfeb', 'cdbaf']
+    known_signals, known_output_digits = decode_signals_and_output(signals, output)
+    assert get_signals_for_number(known_signals,0) == 'cagedb'
+
 def test_decode_signals_easy_numbers():
-    assert decode_signals_and_output(['egadfb', 'cdbfeg', 'cegd', 'fecab', 'cgb', 'gbdefca', 'cg', 'fgcdab', 'egfdb', 'bfceg'],['gbdfcae', 'bgc', 'cg', 'cgb']) == [8, 7, 1, 7]
+     known_signals, known_output_digits = decode_signals_and_output(['egadfb', 'cdbfeg', 'cegd', 'fecab', 'cgb', 'gbdefca', 'cg', 'fgcdab', 'egfdb', 'bfceg'],['gbdfcae', 'bgc', 'cg', 'cgb'])
+     assert known_output_digits == [8, 7, 1, 7]
 
 def test_decode_signals_easy_numbers_and_nine():
-    assert decode_signals_and_output( ['edbfga', 'begcd', 'cbg',  'gc',  'gcadebf',  'fbgde', 'acbgfd', 'abcde', 'gfcbed', 'gfec'], ['fcgedb', 'cgb', 'dgebacf', 'gc']) == [9, 7, 8, 1]
+    known_signals, known_output_digits = decode_signals_and_output( ['edbfga', 'begcd', 'cbg',  'gc',  'gcadebf',  'fbgde', 'acbgfd', 'abcde', 'gfcbed', 'gfec'], ['fcgedb', 'cgb', 'dgebacf', 'gc'])
+    assert known_output_digits == [9, 7, 8, 1]
