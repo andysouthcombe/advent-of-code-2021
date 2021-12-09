@@ -1,6 +1,6 @@
 import pytest
 
-from day_8 import count_digits_in_output_with_distinct_signal_count, decode_list_of_signals_and_sum_output, decode_signals_and_output, find_known_digits_in_output, find_number_nine, find_number_six, get_signals_for_number, get_signals_with_distinct_counts, identify_signals_for_easy_numbers, identify_top_line, read_and_split_file
+from aoc_day8 import count_digits_in_output_with_distinct_signal_count, decode_list_of_signals_and_sum_output, decode_signals_and_output, find_known_digits_in_output, find_number_nine, find_number_six, get_signals_for_number, get_signals_with_distinct_counts, identify_signals_for_easy_numbers, identify_top_line, read_and_split_file
 
 test_signals, test_outputs = read_and_split_file('input\\day8_test.txt')
 

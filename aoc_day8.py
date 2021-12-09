@@ -118,5 +118,4 @@ def decode_list_of_signals_and_sum_output(signals_list,outputs_list):
 
 if __name__ == '__main__':
     signals, outputs = read_and_split_file('input\\day8.txt')
-    for signal in signals:
-        print(identify_signals_for_easy_numbers(signal))
+    print(decode_list_of_signals_and_sum_output(signals, outputs))
