@@ -34,8 +34,23 @@ def identify_signals_for_easy_numbers(distinct_signals):
 
 def identify_top_line(signals_for_one, signals_for_seven):
     return list(set(signals_for_seven) - set(signals_for_one))[0]
+
+def find_known_digits_in_output(known_signals,output):
+    known_digits = [None] * 4
+    for index, digit in enumerate(output):
+        for signal in known_signals:
+            print(set(digit),set(signal[0]))
+            if set(digit) == set(signal[0]):
+                known_digits[index] = signal[1]
+    return [known_digit for known_digit in known_digits if known_digit is not None]
     
 
+    
+def decode_signals_and_output(signals, output):
+    easy_number_signals = identify_signals_for_easy_numbers(signals)
+    known_digits = find_known_digits_in_output(easy_number_signals, output)
+    if len(known_digits) == len(output):
+        return known_digits
 
 
 if __name__ == '__main__':
