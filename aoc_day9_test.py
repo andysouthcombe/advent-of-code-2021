@@ -21,3 +21,6 @@ def test_find_neighbours_for_left_square():
 
 def test_find_neighbours_for_right_square():
    assert test_heightmap.get_neighbour_square_values(0,9) == [1,1]
+
+def test_find_low_points():
+    assert test_heightmap.find_low_points_and_risk_levels()[0] == [2, 1, 6, 6]
