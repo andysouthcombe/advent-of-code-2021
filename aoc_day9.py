@@ -7,15 +7,18 @@ class heightmap:
     def get_neighbour_square_values(self, y, x):
         neighbours = []
         if self.has_above(y):
-            neighbours.append(self.squares[y-1][x])
-        neighbours.append(self.squares[y][x+1])
-        neighbours.append(self.squares[y+1][x])
-        neighbours.append(self.squares[y][x-1])
+            neighbours.append(int(self.squares[y-1][x]))
+        neighbours.append(int(self.squares[y][x+1]))
+        if self.has_below(y):
+            neighbours.append(int(self.squares[y+1][x]))
+        neighbours.append(int(self.squares[y][x-1]))
         return neighbours
     
     def has_above(self, y):
         return y > 0
 
+    def has_below(self, y):
+        return y < self.max_y
         
 
 def read_numbers(filename):

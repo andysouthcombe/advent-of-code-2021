@@ -1,1 +1,1 @@
-print([r for r in range(3,1,-1)])
+print([int(num) for num in '123456'])
