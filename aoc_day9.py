@@ -8,10 +8,12 @@ class heightmap:
         neighbours = []
         if self.has_above(y):
             neighbours.append(int(self.squares[y-1][x]))
-        neighbours.append(int(self.squares[y][x+1]))
+        if self.has_right(x):
+            neighbours.append(int(self.squares[y][x+1]))
         if self.has_below(y):
             neighbours.append(int(self.squares[y+1][x]))
-        neighbours.append(int(self.squares[y][x-1]))
+        if self.has_left(x):
+            neighbours.append(int(self.squares[y][x-1]))
         return neighbours
     
     def has_above(self, y):
@@ -19,7 +21,12 @@ class heightmap:
 
     def has_below(self, y):
         return y < self.max_y
+    
+    def has_left(self, x):
+        return x > 0
         
+    def has_right(self, x):
+        return x < self.max_x
 
 def read_numbers(filename):
     with open(filename,'r') as f:
