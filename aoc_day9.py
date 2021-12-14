@@ -77,4 +77,9 @@ def read_numbers(filename):
 
 if __name__ == '__main__':
     full_heightmap = heightmap(read_numbers('input\\day9.txt'))
-    print(f'Risk levels are {sum(full_heightmap.find_low_points_and_risk_levels()[1])}')
+    low_points, risk_levels = full_heightmap.find_low_points_and_risk_levels()
+    print(f'Risk levels are {sum(risk_levels)}')
+    basins = [full_heightmap.find_basin(y,x) for (y, x) in low_points]
+    biggest_basin_sizes = [len(basin) for basin in basins]
+    biggest_basin_sizes.sort(reverse=True)
+    print(f'Three largest basins are {biggest_basin_sizes[0:3]}')

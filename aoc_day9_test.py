@@ -33,3 +33,6 @@ def test_find_low_points():
 
 def test_find_first_basin():
     assert set(test_heightmap.find_basin(0,1)) == set([(0,1),(0,0),(1,0)])
+
+
+    
