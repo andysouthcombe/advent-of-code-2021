@@ -1,6 +1,6 @@
 import pytest
 
-from aoc_day10 import get_invalid_closing_character, score_invalid_chars_part_1,finish_incomplete_string
+from aoc_day10 import get_invalid_closing_character, score_invalid_chars_part_1,finish_incomplete_string, score_missing_chars_part_2
 
 test_input_valid_1 = '()'
 test_input_valid_2 = '()()<>{()}'
@@ -47,4 +47,5 @@ def test_score_invalid_chars_part_1_works_test_input():
 def test_finishes_first_incomplete_string():
     assert finish_incomplete_string(test_input_part_2[0]) == ['}', '}' ,']' ,']' ,')' ,'}' ,')' ,']']
 
-                                                            #['}', '}', ']', ']', ')', ')', '}', ')', ']']
+def test_scores_test_incomplete_strings():
+    assert score_missing_chars_part_2(test_input_part_2) == 288957
