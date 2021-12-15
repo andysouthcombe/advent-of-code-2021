@@ -77,6 +77,6 @@ def read_lines(filename):
         return [line(coords(int(start_x),int(start_y)), coords(int(end_x),int(end_y)) ) for start_x, start_y,end_x,end_y in split_coords]
 
 if __name__ == '__main__':
-    grid = grid(read_lines('input\\day_5.txt'))
+    grid = grid(read_lines('input\\day5.txt'))
     print(f'Grid has two or more non diagonal lines crossing at {grid.count_points_with_multiple_non_diagonal_lines_overlapping()} points')
     print(f'Grid has two or more total lines crossing at {grid.count_points_with_multiple_lines_overlapping()} points')

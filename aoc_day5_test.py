@@ -2,7 +2,7 @@ import pytest
 
 from aoc_day5 import coords, get_all_coords_on_line, grid, line, not_diagonal, read_lines
 
-lines = read_lines('input\\day_5_test.txt')
+lines = read_lines('input\\day5_test.txt')
 test_grid = grid(lines)
 
 def test_read_lines_correctly():
