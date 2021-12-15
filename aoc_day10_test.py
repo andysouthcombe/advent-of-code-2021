@@ -16,7 +16,18 @@ test_input_part_1 = [
                         '<{([([[(<>()){}]>(<<{{'
                     ] 
 
+test_input_part_2 = [
+                        '[({(<(())[]>[[{[]{<()<>>',
+                        '[(()[<>])]({[<{<<[]>>(',
+                        '(((({<>}<{<{<>}{[]{[]{}',
+                        '{<[[]]>}<{[{[{[]{()[[[]',
+                        '<{([{{}}[<[[[<>{}]]]>[]]'
+                    ]
+
 def test_simple_valid_input_returns_none():
+    assert get_invalid_closing_character(test_input_part_2[0]) == None
+
+def test_incomplete_input_returns_none():
     assert get_invalid_closing_character(test_input_valid_1) == None
 
 def test_simple_invalid_input_returns_square_bracket():

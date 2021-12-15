@@ -34,4 +34,4 @@ def score_invalid_chars_part_1(inputs):
     return sum([invalid_closing_char_scores[invalid_char] for invalid_char in invalid_chars if invalid_char is not None])
 
 if __name__ == '__main__':
-    print(get_invalid_closing_character('{([(<{}[<>[]}>{[]{[(<()>'))
+    print(score_invalid_chars_part_1(read_file_of_strings('input\\day10.txt')))
