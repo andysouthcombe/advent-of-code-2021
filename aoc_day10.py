@@ -29,6 +29,18 @@ def get_invalid_closing_character(input):
                 return char
     return None
 
+def finish_incomplete_string(input):
+    opening_chars = []
+    for char in input:
+        if char in open_to_closing_chars:
+            opening_chars.append(char)
+        if char in closing_to_open_chars:
+            opening_chars.reverse()
+            opening_chars.remove(closing_to_open_chars[char])
+            opening_chars.reverse()
+    opening_chars.reverse()
+    return [open_to_closing_chars[char] for char in opening_chars]
+
 def score_invalid_chars_part_1(inputs):
     invalid_chars = [get_invalid_closing_character(input) for input in inputs]
     return sum([invalid_closing_char_scores[invalid_char] for invalid_char in invalid_chars if invalid_char is not None])
