@@ -19,3 +19,17 @@ def test_take_step_flashes_at_9():
     single_octopus_grid = OctopiGrid([[9]])
     single_octopus_grid.take_step()
     assert single_octopus_grid.get_octopus(0, 0)  == 0
+
+def test_flash_increments_right_neighbour():
+    double_octopus_grid = OctopiGrid([[9, 2]])
+    double_octopus_grid.take_step()
+    assert double_octopus_grid.get_octopus(1, 0)  == 4
+
+def test_flash_increments_all_neighbours():
+    nine_by_nine_octopus_grid = OctopiGrid([[1, 1, 1],
+                                            [1, 9, 1],
+                                            [1, 1, 1]])
+    nine_by_nine_octopus_grid.take_step()
+    assert nine_by_nine_octopus_grid  ==  OctopiGrid([[3, 3, 3],
+                                                      [3, 0, 3],
+                                                      [3, 3, 3]])
