@@ -5,6 +5,11 @@ from dataclasses import dataclass
 class Octopus:
     def __init__(self, energy) -> None:
         self.energy = int(energy)
+    
+    def take_step(self):
+        self.energy += 1
+        if self.energy == 10:
+            self.energy = 0
 
 
 def initialise_octopi_grid(filename):
