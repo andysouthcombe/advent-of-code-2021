@@ -33,6 +33,9 @@ class OctopiGrid:
             for x in range(0, len(octopi_line)):
                 if self.check_if_neighbour_flashed(x, y, flashed_octopi) and (x,y) not in flashed_octopi:
                     self.increment_octopus(x, y)
+                    if self.get_octopus(x,y) > 9:
+                        self.flash_octopus(x, y)
+                        flashed_octopi.append((x, y))
         
         
                 

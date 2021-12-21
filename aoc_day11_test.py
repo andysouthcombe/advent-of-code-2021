@@ -26,10 +26,20 @@ def test_flash_increments_right_neighbour():
     assert double_octopus_grid.get_octopus(1, 0)  == 4
 
 def test_flash_increments_all_neighbours():
-    nine_by_nine_octopus_grid = OctopiGrid([[1, 1, 1],
+    nine_square_octopus_grid = OctopiGrid([[1, 1, 1],
                                             [1, 9, 1],
                                             [1, 1, 1]])
-    nine_by_nine_octopus_grid.take_step()
-    assert nine_by_nine_octopus_grid  ==  OctopiGrid([[3, 3, 3],
+    nine_square_octopus_grid.take_step()
+    assert nine_square_octopus_grid.octopi_lines  ==  OctopiGrid([[3, 3, 3],
                                                       [3, 0, 3],
-                                                      [3, 3, 3]])
+                                                      [3, 3, 3]]).octopi_lines
+    
+def test_flash_chain_reaction():
+    nine_square_octopus_grid = OctopiGrid([[8, 8, 8],
+                                            [8, 9, 8],
+                                            [8, 8, 8]])
+    nine_square_octopus_grid.take_step()
+    assert nine_square_octopus_grid.octopi_lines  ==  OctopiGrid([[0, 0, 0],
+                                                      [0, 0, 0],
+                                                      [0, 0, 0]]).octopi_lines
+    
