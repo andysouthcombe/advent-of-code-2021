@@ -40,9 +40,13 @@ class OctopiGrid:
                             self.flash_octopus(x, y)
                             flashed_octopi.append((x, y))
                             flashing_queue.append((x,y))
+        return len(flashed_octopi)
         
-        
-                
+    def take_number_of_steps(self, steps):
+        flashed_count = []
+        for i in range(1,steps):
+            flashed_count.append(self.take_step())
+        return sum(flashed_count)
                 
 
 def initialise_octopi_grid(filename):

@@ -43,3 +43,6 @@ def test_flash_chain_reaction():
                                                       [0, 0, 0],
                                                       [0, 0, 0]]).octopi_lines
     
+def test_flashed_count_for_test_case():
+    number_of_flashes = test_grid.take_number_of_steps(100)
+    assert number_of_flashes == 1656
