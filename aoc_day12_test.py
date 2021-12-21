@@ -9,7 +9,7 @@ def test_parses_route_list():
     assert len(route_list) == 14
 
 def test_get_routes_from_cave():
-    expected_routes = [('A','c'), ('A','b'), ('A', 'end'), ('A','start')]
+    expected_routes = ['c', 'b', 'end', 'start']
     assert expected_routes == get_routes_from_cave('A',route_list)
 
 def test_is_cave_small_for_small_cave():
@@ -17,3 +17,6 @@ def test_is_cave_small_for_small_cave():
 
 def test_is_cave_small_for_large_cave():
     assert not is_cave_small('A')
+
+def test_find_paths():
+    return 1
