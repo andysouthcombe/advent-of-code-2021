@@ -44,9 +44,19 @@ class OctopiGrid:
         
     def take_number_of_steps(self, steps):
         flashed_count = []
-        for i in range(1,steps):
+        for i in range(0,steps):
             flashed_count.append(self.take_step())
+        print(self.octopi_lines)
         return sum(flashed_count)
+    
+    def take_steps_until_all_flash(self):
+        octopi_count = len(self.octopi_lines) * len(self.octopi_lines[0])
+        flashed_count = 0
+        step_count = 0
+        while flashed_count < octopi_count:
+            flashed_count = self.take_step()
+            step_count += 1
+        return step_count
                 
 
 def initialise_octopi_grid(filename):
@@ -55,3 +65,21 @@ def initialise_octopi_grid(filename):
     for octopi_line in raw_grid:
         octopi_grid.append([int(octopus) for octopus in octopi_line])
     return  OctopiGrid(octopi_grid)
+
+
+if __name__ == '__main__':
+    test_octopi_grid = initialise_octopi_grid('input\\day11_test.txt')
+    number_of_flashes = test_octopi_grid.take_number_of_steps(100)
+    print(f'After 100 steps for part 1 test grid we have {number_of_flashes} flashes')
+    octopi_grid = initialise_octopi_grid('input\\day11.txt')
+    number_of_flashes = octopi_grid.take_number_of_steps(100)
+    print(f'After 100 steps for part 1 we have {number_of_flashes} flashes')
+
+    test_octopi_grid_part_2 = initialise_octopi_grid('input\\day11_test.txt')
+    number_of_flashes = test_octopi_grid_part_2.take_steps_until_all_flash()
+    print(f'We needed {number_of_flashes} for test grid before all flashed together')
+
+    octopi_grid_part_2 = initialise_octopi_grid('input\\day11.txt')
+    number_of_flashes = octopi_grid_part_2.take_steps_until_all_flash()
+    print(f'We needed {number_of_flashes} for real grid before all flashed together')
+    
