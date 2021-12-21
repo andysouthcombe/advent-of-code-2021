@@ -7,3 +7,6 @@ def parse_route_list(filename):
     
 def get_routes_from_cave(cave, route_list):
     return [route for route in route_list if cave == route[0]]
+
+def is_cave_small(cave):
+    return cave.islower()
