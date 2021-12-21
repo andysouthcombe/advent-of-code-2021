@@ -11,9 +11,9 @@ def test_get_octopi():
     assert test_grid.get_octopus(8,9)  == 2
 
 def test_take_step_increases_energy():
-    new_grid = test_grid
+    new_grid = initialise_octopi_grid('input\\day11_test.txt')
     new_grid.take_step()
-    assert test_grid.get_octopus(8,9)  == 3
+    assert new_grid.get_octopus(8,9)  == 3
 
 def test_take_step_flashes_at_9():
     single_octopus_grid = OctopiGrid([[9]])
@@ -44,6 +44,6 @@ def test_flash_chain_reaction():
                                                       [0, 0, 0]]).octopi_lines
     
 def test_flashed_count_for_test_case():
-    test_grid_copy = test_grid
+    test_grid_copy = initialise_octopi_grid('input\\day11_test.txt')
     number_of_flashes = test_grid_copy.take_number_of_steps(100)
     assert number_of_flashes == 1656
