@@ -26,6 +26,10 @@ def print_points(points):
 
 
 if __name__ == '__main__':
-    points, folds = extract_points_and_folds(read_file_of_strings('input\\day13_test.txt'))
+    points, folds = extract_points_and_folds(read_file_of_strings('input\\day13.txt'))
+    axis, line = folds[0]
+    print(len(fold_on_axis(points, axis, line)))
+    for axis, line in folds:
+        points = fold_on_axis(points, axis, line)
     print_points(points)
-    
+    print(len(points))
