@@ -10,3 +10,8 @@ def test_folds_1x3_grid():
     input_points = [(0,2)]
     expected_points = [(0,0)]
     assert fold_on_axis(input_points,'y',1) == expected_points
+
+def test_does_not_fold_points_before_x_axis():
+    input_points = [(1,0)]
+    expected_points = [(1,0)]
+    assert fold_on_axis(input_points,'x',2) == expected_points

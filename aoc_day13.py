@@ -8,7 +8,7 @@ def extract_points_and_folds(raw_data):
 
 def fold_on_axis(points, fold_axis, line_number):
     if fold_axis == 'x':
-        return [(x - (line_number + 1), y) for x, y in points]
+        return [(x - (line_number + 1), y) for x, y in points if x > line_number] + [(x, y) for x, y in points if x < line_number]
     else:
         return [(x, y - (line_number + 1)) for x, y in points]
 
