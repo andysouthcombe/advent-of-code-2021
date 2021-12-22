@@ -12,5 +12,20 @@ def fold_on_axis(points, fold_axis, line_number):
     else:
         return list(set([(x, line_number - (y- line_number)) for x, y in points if y > line_number] + [(x, y) for x, y in points if y < line_number]))
 
+def print_points(points):
+    max_x = max([point[0] for point in points])
+    max_y = max([point[1] for point in points])
+    for y in range (0, max_y + 1):
+        for x in range (0, max_x + 1):
+            if (x, y) in points:
+                print('#',end='')
+            else:
+                print('.',end='')
+        print('', end='\n')
+
+
+
 if __name__ == '__main__':
-    print(extract_points_and_folds(read_file_of_strings('input\\day13_test.txt')))
+    points, folds = extract_points_and_folds(read_file_of_strings('input\\day13_test.txt'))
+    print_points(points)
+    
