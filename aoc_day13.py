@@ -6,5 +6,9 @@ def extract_points_and_folds(raw_data):
     folds = [(axis, int(line)) for axis, line in [fold.replace('fold along ','').split('=') for fold in raw_data[split_line+1:]]]
     return points, folds
 
+def fold_on_axis(points, fold_axis, line_number):
+    return [(x, y - (line_number + 1)) for x, y in points]
+
+
 if __name__ == '__main__':
     print(extract_points_and_folds(read_file_of_strings('input\\day13_test.txt')))
