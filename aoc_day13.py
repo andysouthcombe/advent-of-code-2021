@@ -8,9 +8,9 @@ def extract_points_and_folds(raw_data):
 
 def fold_on_axis(points, fold_axis, line_number):
     if fold_axis == 'x':
-        return [(x - (line_number + 1), y) for x, y in points if x > line_number] + [(x, y) for x, y in points if x < line_number]
+        return list(set([(line_number - (x - line_number), y) for x, y in points if x > line_number] + [(x, y) for x, y in points if x < line_number]))
     else:
-        return [(x, y - (line_number + 1)) for x, y in points if y > line_number] + [(x, y) for x, y in points if y < line_number]
+        return list(set([(x, line_number - (y- line_number)) for x, y in points if y > line_number] + [(x, y) for x, y in points if y < line_number]))
 
 if __name__ == '__main__':
     print(extract_points_and_folds(read_file_of_strings('input\\day13_test.txt')))
