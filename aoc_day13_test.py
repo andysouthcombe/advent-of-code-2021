@@ -15,3 +15,8 @@ def test_does_not_fold_points_before_x_axis():
     input_points = [(1,0)]
     expected_points = [(1,0)]
     assert fold_on_axis(input_points,'x',2) == expected_points
+
+def test_does_not_fold_points_before_y_axis():
+    input_points = [(0,1)]
+    expected_points = [(0,1)]
+    assert fold_on_axis(input_points,'y',2) == expected_points
