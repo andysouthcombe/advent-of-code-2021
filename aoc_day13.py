@@ -7,8 +7,10 @@ def extract_points_and_folds(raw_data):
     return points, folds
 
 def fold_on_axis(points, fold_axis, line_number):
-    return [(x - (line_number + 1), y) for x, y in points]
-
+    if fold_axis == 'x':
+        return [(x - (line_number + 1), y) for x, y in points]
+    else:
+        return [(x, y - (line_number + 1)) for x, y in points]
 
 if __name__ == '__main__':
     print(extract_points_and_folds(read_file_of_strings('input\\day13_test.txt')))
