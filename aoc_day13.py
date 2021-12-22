@@ -7,7 +7,7 @@ def extract_points_and_folds(raw_data):
     return points, folds
 
 def fold_on_axis(points, fold_axis, line_number):
-    return [(x, y - (line_number + 1)) for x, y in points]
+    return [(x - (line_number + 1), y) for x, y in points]
 
 
 if __name__ == '__main__':
